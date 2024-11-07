@@ -1,13 +1,18 @@
 #include "mbed.h"
+#include "tb6612.h"
 
-void setMotorSpeed(float speed, DigitalOut &dir1, DigitalOut &dir2, PwmOut &pwm) {
+void TB6612::setSpeed(float speed) {
     if (speed > 0) {
-        dir1 = true;
-        dir2 = false;
-        pwm = speed;
+        _dir1 = true;
+        _dir2 = false;
+        _pwm = speed;
     } else {
-        dir1 = false;
-        dir2 = true;
-        pwm = -speed;
+        _dir1 = false;
+        _dir2 = true;
+        _pwm = -speed;
     }
+}
+
+void TB6612::operator=(float speed) {
+    setSpeed(speed);
 }
